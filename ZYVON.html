@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>ZYVON TECH</title>
+
+<style>
+*{
+ box-sizing:border-box;
+ margin:0;
+}
+
+html{
+ scroll-behavior:smooth;
+}
+
+body{
+ background:#050505;
+ color:#fff;
+ font-family:Arial,sans-serif;
+ line-height:1.45;
+}
+
+a{
+ color:inherit;
+ text-decoration:none;
+}
+
+button,input,select{
+ font:inherit;
+}
+
+header{
+ height:64px;
+ padding:0 16px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ border-bottom:1px solid #222;
+ position:sticky;
+ top:0;
+ background:#050505;
+ z-index:20;
+}
+
+.logo{
+ font-size:22px;
+ font-weight:900;
+ letter-spacing:3px;
+}
+
+.logo small{
+ display:block;
+ font-size:8px;
+ letter-spacing:4px;
+ color:#888;
+ text-align:center;
+}
+
+.menu{
+ position:relative;
+}
+
+.menu input{
+ display:none;
+}
+
+.menu label{
+ width:44px;
+ height:44px;
+ border:1px solid #333;
+ border-radius:10px;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ gap:5px;
+ align-items:center;
+ cursor:pointer;
+}
+
+.menu label i{
+ display:block;
+ width:20px;
+ height:2px;
+ background:#fff;
+}
+
+.panel{
+ position:fixed;
+ right:-290px;
+ top:0;
+ width:290px;
+ height:100vh;
+ background:#0b0b0b;
+ border-left:1px solid #333;
+ padding:75px 22px 20px;
+ transition:.25s;
+ z-index:30;
+ overflow:auto;
+}
+
+.menu input:checked~.panel{
+ right:0;
+}
+
+.close{
+ position:absolute;
+ right:20px;
+ top:18px;
+ font-size:28px;
+ cursor:pointer;
+}
+
+.panel h3{
+ font-size:10px;
+ color:#777;
+ letter-spacing:2px;
+ margin:25px 0 7px;
+}
+
+.panel a{
+ display:block;
+ padding:14px 0;
+ border-bottom:1px solid #222;
+ font-weight:bold;
+}
+
+main{
+ max-width:900px;
+ margin:auto;
+ padding:25px 15px 55px;
+}
+
+.hero{
+ text-align:center;
+ padding:30px 0 35px;
+}
+
+.hero .z{
+ font-size:58px;
+ font-weight:900;
+ line-height:.8;
+}
+
+.hero h1{
+ font-size:clamp(38px,11vw,70px);
+ letter-spacing:5px;
+ margin-top:18px;
+}
+
+.hero p{
+ color:#888;
+ margin-top:10px;
+ font-size:12px;
+}
+
+.card,.box{
+ border:1px solid #292929;
+ background:#0d0d0d;
+ border-radius:18px;
+ padding:22px;
+}
+
+.card{
+ text-align:center;
+}
+
+.zmark{
+ width:72px;
+ height:72px;
+ border:2px solid #fff;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ margin:0 auto 17px;
+ font-size:34px;
+ font-weight:900;
+}
+
+.card h2{
+ font-size:19px;
+ letter-spacing:2px;
+}
+
+.card p{
+ color:#888;
+ font-size:12px;
+ margin:8px 0 18px;
+}
+
+.btn{
+ display:block;
+ background:#fff;
+ color:#000;
+ padding:14px;
+ border-radius:11px;
+ font-weight:900;
+ font-size:11px;
+ letter-spacing:1px;
+ text-align:center;
+}
+
+.section{
+ margin-top:30px;
+}
+
+.title{
+ font-size:10px;
+ color:#777;
+ letter-spacing:3px;
+ margin:0 0 10px 4px;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:11px;
+}
+
+.item{
+ border:1px solid #292929;
+ border-radius:15px;
+ padding:18px;
+ background:#0d0d0d;
+}
+
+.item h3{
+ font-size:15px;
+ margin:10px 0 5px;
+}
+
+.item p{
+ font-size:11px;
+ color:#777;
+}
+
+.item a,
+.smallbtn{
+ display:block;
+ border:1px solid #444;
+ border-radius:9px;
+ padding:10px;
+ text-align:center;
+ margin-top:13px;
+ font-size:10px;
+ font-weight:bold;
+ background:transparent;
+ color:#fff;
+ cursor:pointer;
+}
+
+.search{
+ width:100%;
+ background:#0c0c0c;
+ border:1px solid #333;
+ color:#fff;
+ border-radius:11px;
+ padding:13px;
+ margin-bottom:11px;
+ outline:none;
+}
+
+.search:focus{
+ border-color:#888;
+}
+
+.filters{
+ display:flex;
+ gap:7px;
+ overflow:auto;
+ padding-bottom:7px;
+ margin-bottom:10px;
+}
+
+.filters button{
+ white-space:nowrap;
+ background:#101010;
+ color:#aaa;
+ border:1px solid #333;
+ border-radius:20px;
+ padding:8px 12px;
+ font-size:10px;
+ cursor:pointer;
+}
+
+.filters button.active{
+ background:#fff;
+ color:#000;
+}
+
+.phone{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ border:1px solid #292929;
+ padding:14px;
+ border-radius:12px;
+ margin-bottom:8px;
+ background:#0c0c0c;
+}
+
+.phone strong{
+ font-size:13px;
+}
+
+.phone small{
+ display:block;
+ color:#777;
+ font-size:10px;
+}
+
+.phone button{
+ border:1px solid #444;
+ background:#fff;
+ color:#000;
+ border-radius:8px;
+ padding:8px;
+ font-size:9px;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.compare{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+}
+
+.compare select{
+ width:100%;
+ background:#111;
+ color:#fff;
+ border:1px solid #333;
+ border-radius:9px;
+ padding:11px;
+}
+
+.compareResult{
+ margin-top:12px;
+ border-top:1px solid #292929;
+ padding-top:12px;
+ font-size:12px;
+ color:#aaa;
+}
+
+.compareTable{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:8px;
+ margin-top:15px;
+}
+
+.compareTable div{
+ border:1px solid #292929;
+ padding:10px;
+ border-radius:9px;
+ font-size:11px;
+ color:#aaa;
+}
+
+.compareTable b{
+ color:#fff;
+ display:block;
+ margin-bottom:4px;
+}
+
+.news{
+ border:1px solid #292929;
+ padding:16px;
+ background:#0d0d0d;
+ border-radius:13px;
+ margin-bottom:9px;
+}
+
+.news b{
+ display:block;
+ font-size:13px;
+}
+
+.news span{
+ display:block;
+ color:#777;
+ font-size:10px;
+ margin-top:5px;
+}
+
+.news button{
+ margin-top:11px;
+ border:1px solid #444;
+ background:#fff;
+ color:#000;
+ border-radius:8px;
+ padding:8px 12px;
+ font-size:9px;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.newsTag{
+ display:inline-block;
+ border:1px solid #444;
+ border-radius:20px;
+ padding:4px 8px;
+ font-size:8px;
+ color:#aaa;
+ margin-bottom:8px;
+}
+
+.tip{
+ border-bottom:1px solid #222;
+ padding:16px 2px;
+ cursor:pointer;
+}
+
+.tip:last-child{
+ border:0;
+}
+
+.tip b{
+ font-size:13px;
+}
+
+.tip p{
+ color:#777;
+ font-size:10px;
+ margin-top:4px;
+}
+
+.labgrid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:8px;
+}
+
+.lab{
+ border:1px solid #292929;
+ border-radius:12px;
+ padding:15px;
+ background:#0c0c0c;
+}
+
+.lab b{
+ font-size:12px;
+}
+
+.lab p{
+ color:#777;
+ font-size:10px;
+ margin-top:5px;
+}
+
+.lab button{
+ width:100%;
+ margin-top:12px;
+ padding:9px;
+ border:1px solid #444;
+ background:#fff;
+ color:#000;
+ border-radius:8px;
+ font-size:9px;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.tool{
+ margin-top:12px;
+ display:none;
+ border-top:1px solid #292929;
+ padding-top:15px;
+}
+
+.tool.show{
+ display:block;
+}
+
+.tool input,
+.tool select{
+ width:100%;
+ background:#111;
+ color:#fff;
+ border:1px solid #333;
+ border-radius:8px;
+ padding:10px;
+ margin-bottom:8px;
+}
+
+.tool button{
+ width:100%;
+ padding:10px;
+ border:0;
+ background:#fff;
+ color:#000;
+ border-radius:8px;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.toolResult{
+ margin-top:10px;
+ border:1px solid #292929;
+ border-radius:8px;
+ padding:10px;
+ color:#aaa;
+ font-size:11px;
+}
+
+.daily{
+ display:flex;
+ gap:15px;
+ align-items:center;
+}
+
+.daily .device{
+ width:70px;
+ height:100px;
+ border:2px solid #777;
+ border-radius:12px;
+ display:grid;
+ place-items:center;
+ text-align:center;
+ font-size:20px;
+ font-weight:900;
+ flex:none;
+}
+
+.daily h3{
+ font-size:18px;
+}
+
+.daily p{
+ font-size:10px;
+ color:#888;
+ margin-top:4px;
+}
+
+.footer{
+ text-align:center;
+ color:#555;
+ font-size:9px;
+ letter-spacing:2px;
+ margin-top:40px;
+}
+
+.modal{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.85);
+ display:none;
+ align-items:flex-end;
+ z-index:50;
+}
+
+.modal.show{
+ display:flex;
+}
+
+.modalbox{
+ width:100%;
+ max-width:900px;
+ margin:auto;
+ background:#0d0d0d;
+ border:1px solid #333;
+ border-radius:18px 18px 0 0;
+ padding:22px;
+ max-height:85vh;
+ overflow:auto;
+}
+
+.modalbox h2{
+ margin-bottom:12px;
+}
+
+.spec{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:7px;
+}
+
+.spec div{
+ border:1px solid #292929;
+ padding:10px;
+ border-radius:8px;
+ color:#aaa;
+ font-size:11px;
+}
+
+.spec b{
+ display:block;
+ color:#fff;
+ margin-bottom:2px;
+}
+
+.modalclose{
+ float:right;
+ background:none;
+ color:#fff;
+ border:0;
+ font-size:25px;
+ cursor:pointer;
+}
+
+@media(max-width:560px){
+
+ .grid{
+  grid-template-columns:1fr;
+ }
+
+ .labgrid{
+  grid-template-columns:1fr 1fr;
+ }
+
+ .daily{
+  align-items:flex-start;
+ }
+
+ .compare{
+  grid-template-columns:1fr;
+ }
+
+ .compareTable{
+  grid-template-columns:1fr;
+ }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+ZYVON
+<small>TECH</small>
+</div>
+
+<div class="menu">
+
+<input id="menu" type="checkbox">
+
+<label for="menu" aria-label="Abrir menu">
+<i></i>
+<i></i>
+<i></i>
+</label>
+
+<div class="panel">
+
+<label class="close" for="menu">×</label>
+
+<h3>NAVEGAÇÃO</h3>
+
+<a href="#inicio" onclick="closeMenu()">🏠 Início</a>
+<a href="#noticias" onclick="closeMenu()">📰 Notícias</a>
+<a href="#celulares" onclick="closeMenu()">📱 Celulares</a>
+<a href="#comparar" onclick="closeMenu()">⚔️ Comparar</a>
+<a href="#benchmark" onclick="closeMenu()">📊 Benchmark</a>
+<a href="#games" onclick="closeMenu()">🎮 Games</a>
+<a href="#dicas" onclick="closeMenu()">💡 Dicas</a>
+<a href="#laboratorio" onclick="closeMenu()">🧪 Laboratório</a>
+
+<h3>COMUNIDADE</h3>
+
+<a href="https://chat.whatsapp.com/HKXGDZMjlv74R1LR6z8Jsv" target="_blank">
+ZYVON WHATSAPP ↗
+</a>
+
+<a href="https://tiktok.me/group/ZSbDxNsnN/" target="_blank">
+ZYVON TIK TOK ↗
+</a>
+
+</div>
+</div>
+</header>
+
+<main id="inicio">
+
+<section class="hero">
+
+<div class="z">Z</div>
+
+<h1>ZYVON TECH</h1>
+
+<p>
+CELULARES • TECNOLOGIA • NOVIDADES
+</p>
+
+</section>
+
+<section class="card">
+
+<div class="zmark">Z</div>
+
+<h2>ENTRE NO NOSSO GRUPO</h2>
+
+<p>
+Notícias, novidades, celulares, desempenho e conteúdo TECH.
+</p>
+
+<a class="btn"
+href="https://chat.whatsapp.com/HKXGDZMjlv74R1LR6z8Jsv"
+target="_blank">
+ENTRAR NO WHATSAPP
+</a>
+
+</section>
+
+<!-- NOTÍCIAS -->
+
+<section class="section" id="noticias">
+
+<div class="title">
+📰 ÚLTIMAS NOTÍCIAS
+</div>
+
+<div class="news">
+
+<span class="newsTag">SMARTPHONES</span>
+
+<b>O mercado de smartphones continua avançando em desempenho e recursos de inteligência artificial.</b>
+
+<span>
+Novos aparelhos estão trazendo processadores mais eficientes,
+telas com altas taxas de atualização e recursos de IA diretamente no sistema.
+</span>
+
+<button onclick="openNews('https://news.google.com/search?q=smartphones')">
+VER NOTÍCIAS ATUALIZADAS ↗
+</button>
+
+</div>
+
+<div class="news">
+
+<span class="newsTag">PROCESSADORES</span>
+
+<b>Nova geração de processadores mobile aumenta o foco em eficiência energética.</b>
+
+<span>
+Fabricantes continuam trabalhando em chips mais rápidos,
+com maior desempenho gráfico e menor consumo.
+</span>
+
+<button onclick="openNews('https://news.google.com/search?q=processadores+celulares')">
+VER NOTÍCIAS ↗
+</button>
+
+</div>
+
+<div class="news">
+
+<span class="newsTag">INTELIGÊNCIA ARTIFICIAL</span>
+
+<b>IA está cada vez mais integrada aos smartphones modernos.</b>
+
+<span>
+Recursos de edição de fotos, tradução, resumo de textos e assistentes
+inteligentes já fazem parte de diversos aparelhos.
+</span>
+
+<button onclick="openNews('https://news.google.com/search?q=inteligencia+artificial+celulares')">
+VER NOTÍCIAS ↗
+</button>
+
+</div>
+
+<div class="news">
+
+<span class="newsTag">GAMES</span>
+
+<b>Celulares gamer continuam apostando em telas rápidas e chips potentes.</b>
+
+<span>
+Desempenho gráfico, refrigeração e estabilidade de FPS são alguns
+dos principais pontos analisados em smartphones para jogos.
+</span>
+
+<button onclick="openNews('https://news.google.com/search?q=celular+gamer')">
+VER NOTÍCIAS ↗
+</button>
+
+</div>
+
+</section>
+
+<!-- CELULARES -->
+
+<section class="section" id="celulares">
+
+<div class="title">
+📱 CELULARES — 80+ APARELHOS
+</div>
+
+<input
+class="search"
+id="search"
+placeholder="🔎 Pesquisar celular..."
+>
+
+<div class="filters">
+
+<button class="active" onclick="filterBrand('Todos',this)">
+Todos
+</button>
+
+<button onclick="filterBrand('Samsung',this)">
+Samsung
+</button>
+
+<button onclick="filterBrand('Apple',this)">
+Apple
+</button>
+
+<button onclick="filterBrand('Xiaomi',this)">
+Xiaomi
+</button>
+
+<button onclick="filterBrand('Motorola',this)">
+Motorola
+</button>
+
+<button onclick="filterBrand('Redmi',this)">
+Redmi
+</button>
+
+<button onclick="filterBrand('POCO',this)">
+POCO
+</button>
+
+</div>
+
+<div id="phones"></div>
+
+</section>
+
+<!-- COMPARADOR -->
+
+<section class="section" id="comparar">
+
+<div class="title">
+⚔️ ZYVON VS • COMPARADOR
+</div>
+
+<div class="box">
+
+<div class="compare">
+
+<select id="c1"></select>
+
+<select id="c2"></select>
+
+</div>
+
+<div class="compareResult" id="result">
+Escolha dois celulares para comparar.
+</div>
+
+<div class="compareTable" id="compareTable"></div>
+
+</div>
+
+</section>
+
+<!-- BENCHMARK -->
+
+<section class="section" id="benchmark">
+
+<div class="title">
+📊 ANTUTU BENCHMARK
+</div>
+
+<div class="grid">
+
+<div class="item">
+
+<h3>Baixar AnTuTu</h3>
+
+<p>
+Benchmark utilizado para testar CPU, GPU, memória e desempenho geral.
+</p>
+
+<a href="https://www.antutu.com/web/download"
+target="_blank">
+DOWNLOAD ↗
+</a>
+
+</div>
+
+<div class="item">
+
+<h3>Ranking AnTuTu</h3>
+
+<p>
+Veja os aparelhos e seus resultados no ranking.
+</p>
+
+<a href="https://www.antutu.com/web/ranking"
+target="_blank">
+VER RANKING ↗
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- GAMES -->
+
+<section class="section" id="games">
+
+<div class="title">
+🎮 GAMES
+</div>
+
+<div class="grid">
+
+<div class="item">
+
+<h3>Desempenho em jogos</h3>
+
+<p>
+Compare processadores, GPU, RAM e descubra quais aparelhos
+são mais indicados para jogos.
+</p>
+
+</div>
+
+<div class="item">
+
+<h3>Celular gamer</h3>
+
+<p>
+FPS, temperatura, tela, bateria e desempenho durante partidas.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- DICAS -->
+
+<section class="section" id="dicas">
+
+<div class="title">
+💡 DICAS TECH
+</div>
+
+<div class="box">
+
+<div class="tip" onclick="showTip(0)">
+<b>🔋 Como aumentar a vida útil da bateria</b>
+<p>Toque para ver a dica.</p>
+</div>
+
+<div class="tip" onclick="showTip(1)">
+<b>💾 Como liberar espaço no celular</b>
+<p>Toque para ver a dica.</p>
+</div>
+
+<div class="tip" onclick="showTip(2)">
+<b>📷 Como melhorar suas fotos</b>
+<p>Toque para ver a dica.</p>
+</div>
+
+<div class="tip" onclick="showTip(3)">
+<b>⚡ Como deixar o celular mais rápido</b>
+<p>Toque para ver a dica.</p>
+</div>
+
+<div class="tip" onclick="showTip(4)">
+<b>🌡️ Como diminuir aquecimento</b>
+<p>Toque para ver a dica.</p>
+</div>
+
+<div class="tip" onclick="showTip(5)">
+<b>🔐 Como proteger seu celular</b>
+<p>Toque para ver a dica.</p>
+</div>
+
+<div class="tip" onclick="showTip(6)">
+<b>📶 Como melhorar o Wi-Fi</b>
+<p>Toque para ver a dica.</p>
+</div>
+
+<div class="tip" onclick="showTip(7)">
+<b>🎮 Como melhorar desempenho em jogos</b>
+<p>Toque para ver a dica.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- LABORATÓRIO -->
+
+<section class="section" id="laboratorio">
+
+<div class="title">
+🧪 LABORATÓRIO ZYVON
+</div>
+
+<div class="labgrid">
+
+<div class="lab">
+
+<b>🔋 Calculadora de bateria</b>
+
+<p>
+Estime o consumo da bateria durante o uso.
+</p>
+
+<button onclick="toggleTool('battery')">
+ABRIR FERRAMENTA
+</button>
+
+<div class="tool" id="battery">
+
+<input
+id="batteryCapacity"
+type="number"
+placeholder="Bateria em mAh"
+>
+
+<input
+id="batteryHours"
+type="number"
+placeholder="Horas de uso"
+>
+
+<button onclick="calcBattery()">
+CALCULAR
+</button>
+
+<div class="toolResult" id="batteryResult"></div>
+
+</div>
+
+</div>
+
+<div class="lab">
+
+<b>💾 Armazenamento</b>
+
+<p>
+Calcule quanto espaço você ainda possui.
+</p>
+
+<button onclick="toggleTool('storageTool')">
+ABRIR FERRAMENTA
+</button>
+
+<div class="tool" id="storageTool">
+
+<input
+id="storageTotal"
+type="number"
+placeholder="Armazenamento total em GB"
+>
+
+<input
+id="storageUsed"
+type="number"
+placeholder="Espaço usado em GB"
+>
+
+<button onclick="calcStorage()">
+CALCULAR
+</button>
+
+<div class="toolResult" id="storageResult"></div>
+
+</div>
+
+</div>
+
+<div class="lab">
+
+<b>🎮 Estimador de FPS</b>
+
+<p>
+Faça uma estimativa simples de desempenho.
+</p>
+
+<button onclick="toggleTool('fpsTool')">
+ABRIR FERRAMENTA
+</button>
+
+<div class="tool" id="fpsTool">
+
+<select id="fpsLevel">
+
+<option value="low">
+Processador básico
+</option>
+
+<option value="medium">
+Processador intermediário
+</option>
+
+<option value="high">
+Processador potente
+</option>
+
+<option value="ultra">
+Processador topo de linha
+</option>
+
+</select>
+
+<select id="fpsGame">
+
+<option value="30">
+Jogo pesado
+</option>
+
+<option value="45">
+Jogo médio
+</option>
+
+<option value="60">
+Jogo leve
+</option>
+
+</select>
+
+<button onclick="calcFPS()">
+ESTIMAR FPS
+</button>
+
+<div class="toolResult" id="fpsResult"></div>
+
+</div>
+
+</div>
+
+<div class="lab">
+
+<b>📱 Analisador de aparelho</b>
+
+<p>
+Veja uma análise rápida baseada nas especificações.
+</p>
+
+<button onclick="toggleTool('analysisTool')">
+ABRIR FERRAMENTA
+</button>
+
+<div class="tool" id="analysisTool">
+
+<select id="analysisPhone"></select>
+
+<button onclick="analyzePhone()">
+ANALISAR
+</button>
+
+<div class="toolResult" id="analysisResult"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CELULAR DO ANO -->
+
+<section class="section">
+
+<div class="title">
+📱 CELULAR DO ANO
+</div>
+
+<div class="box daily">
+
+<div class="device">
+S26<br>
+ULTRA
+</div>
+
+<div>
+
+<h3>
+Galaxy S26 Ultra
+</h3>
+
+<p>
+Snapdragon 8 Elite Gen 5 for Galaxy • 200 MP • 5.000 mAh • Tela 6,9" • 120 Hz
+</p>
+
+<button
+class="smallbtn"
+onclick="showSpec('Galaxy S26 Ultra')">
+VER FICHA
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="footer">
+ZYVON TECH • TECNOLOGIA SEM LIMITES
+</footer>
+
+</main>
+
+<!-- MODAL -->
+
+<div
+class="modal"
+id="modal"
+onclick="if(event.target===this)closeSpec()"
+>
+
+<div class="modalbox">
+
+<button
+class="modalclose"
+onclick="closeSpec()">
+×
+</button>
+
+<h2 id="modalTitle"></h2>
+
+<div
+class="spec"
+id="spec">
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* =========================
+   BANCO DE CELULARES
+========================= */
+
+const phones=[
+
+/* SAMSUNG */
+
+{name:"Galaxy S21",brand:"Samsung",cpu:"Snapdragon 888",ram:"8 GB",storage:"128/256 GB",screen:"6,2 AMOLED 120 Hz",battery:"4.000 mAh",camera:"64 MP"},
+
+{name:"Galaxy S21 Ultra",brand:"Samsung",cpu:"Snapdragon 888",ram:"12/16 GB",storage:"128/256/512 GB",screen:"6,8 AMOLED 120 Hz",battery:"5.000 mAh",camera:"108 MP"},
+
+{name:"Galaxy S22",brand:"Samsung",cpu:"Snapdragon 8 Gen 1",ram:"8 GB",storage:"128/256 GB",screen:"6,1 AMOLED 120 Hz",battery:"3.700 mAh",camera:"50 MP"},
+
+{name:"Galaxy S22 Ultra",brand:"Samsung",cpu:"Snapdragon 8 Gen 1",ram:"8/12 GB",storage:"128/256/512 GB/1 TB",screen:"6,8 AMOLED 120 Hz",battery:"5.000 mAh",camera:"108 MP"},
+
+{name:"Galaxy S23",brand:"Samsung",cpu:"Snapdragon 8 Gen 2",ram:"8 GB",storage:"128/256 GB",screen:"6,1 AMOLED 120 Hz",battery:"3.900 mAh",camera:"50 MP"},
+
+{name:"Galaxy S23+",brand:"Samsung",cpu:"Snapdragon 8 Gen 2",ram:"8 GB",storage:"256/512 GB",screen:"6,6 AMOLED 120 Hz",battery:"4.700 mAh",camera:"50 MP"},
+
+{name:"Galaxy S23 Ultra",brand:"Samsung",cpu:"Snapdragon 8 Gen 2",ram:"8/12 GB",storage:"256/512 GB/1 TB",screen:"6,8 AMOLED 120 Hz",battery:"5.000 mAh",camera:"200 MP"},
+
+{name:"Galaxy S24",brand:"Samsung",cpu:"Snapdragon 8 Gen 3",ram:"8 GB",storage:"128/256 GB",screen:"6,2 AMOLED 120 Hz",battery:"4.000 mAh",camera:"50 MP"},
+
+{name:"Galaxy S24+",brand:"Samsung",cpu:"Snapdragon 8 Gen 3",ram:"12 GB",storage:"256/512 GB",screen:"6,7 AMOLED 120 Hz",battery:"4.900 mAh",camera:"50 MP"},
+
+{name:"Galaxy S24 Ultra",brand:"Samsung",cpu:"Snapdragon 8 Gen 3",ram:"12 GB",storage:"256/512 GB/1 TB",screen:"6,8 AMOLED 120 Hz",battery:"5.000 mAh",camera:"200 MP"},
+
+{name:"Galaxy S25",brand:"Samsung",cpu:"Snapdragon 8 Elite",ram:"12 GB",storage:"128/256/512 GB",screen:"6,2 AMOLED 120 Hz",battery:"4.000 mAh",camera:"50 MP"},
+
+{name:"Galaxy S25+",brand:"Samsung",cpu:"Snapdragon 8 Elite",ram:"12 GB",storage:"256/512 GB",screen:"6,7 AMOLED 120 Hz",battery:"4.900 mAh",camera:"50 MP"},
+
+{name:"Galaxy S25 Ultra",brand:"Samsung",cpu:"Snapdragon 8 Elite",ram:"12/16 GB",storage:"256/512 GB/1 TB",screen:"6,9 AMOLED 120 Hz",battery:"5.000 mAh",camera:"200 MP"},
+
+/* GALAXY S26 ULTRA */
+
+{name:"Galaxy S26 Ultra",brand:"Samsung",cpu:"Snapdragon 8 Elite Gen 5 for Galaxy",ram:"12/16 GB",storage:"256/512 GB/1 TB",screen:"6,9 QHD+ Dynamic AMOLED 2X 120 Hz",battery:"5.000 mAh",camera:"200 MP + 50 MP + 50 MP + 10 MP"},
+
+{name:"Galaxy A34",brand:"Samsung",cpu:"Dimensity 1080",ram:"6/8 GB",storage:"128/256 GB",screen:"6,6 AMOLED 120 Hz",battery:"5.000 mAh",camera:"48 MP"},
+
+{name:"Galaxy A35",brand:"Samsung",cpu:"Exynos 1380",ram:"6/8 GB",storage:"128/256 GB",screen:"6,6 AMOLED 120 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Galaxy A54",brand:"Samsung",cpu:"Exynos 1380",ram:"6/8 GB",storage:"128/256 GB",screen:"6,4 AMOLED 120 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Galaxy A55",brand:"Samsung",cpu:"Exynos 1480",ram:"8/12 GB",storage:"128/256 GB",screen:"6,6 AMOLED 120 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+/* APPLE */
+
+{name:"iPhone 13",brand:"Apple",cpu:"A15 Bionic",ram:"4 GB",storage:"128/256/512 GB",screen:"6,1 OLED 60 Hz",battery:"3.227 mAh",camera:"12 MP"},
+
+{name:"iPhone 13 Pro",brand:"Apple",cpu:"A15 Bionic",ram:"6 GB",storage:"128/256/512 GB/1 TB",screen:"6,1 OLED 120 Hz",battery:"3.095 mAh",camera:"12 MP"},
+
+{name:"iPhone 13 Pro Max",brand:"Apple",cpu:"A15 Bionic",ram:"6 GB",storage:"128/256/512 GB/1 TB",screen:"6,7 OLED 120 Hz",battery:"4.352 mAh",camera:"12 MP"},
+
+{name:"iPhone 14",brand:"Apple",cpu:"A15 Bionic",ram:"6 GB",storage:"128/256/512 GB",screen:"6,1 OLED 60 Hz",battery:"3.279 mAh",camera:"12 MP"},
+
+{name:"iPhone 14 Pro",brand:"Apple",cpu:"A16 Bionic",ram:"6 GB",storage:"128/256/512 GB/1 TB",screen:"6,1 OLED 120 Hz",battery:"3.200 mAh",camera:"48 MP"},
+
+{name:"iPhone 14 Pro Max",brand:"Apple",cpu:"A16 Bionic",ram:"6 GB",storage:"128/256/512 GB/1 TB",screen:"6,7 OLED 120 Hz",battery:"4.323 mAh",camera:"48 MP"},
+
+{name:"iPhone 15",brand:"Apple",cpu:"A16 Bionic",ram:"6 GB",storage:"128/256/512 GB",screen:"6,1 OLED 60 Hz",battery:"3.349 mAh",camera:"48 MP"},
+
+{name:"iPhone 15 Plus",brand:"Apple",cpu:"A16 Bionic",ram:"6 GB",storage:"128/256/512 GB",screen:"6,7 OLED 60 Hz",battery:"4.383 mAh",camera:"48 MP"},
+
+{name:"iPhone 15 Pro",brand:"Apple",cpu:"A17 Pro",ram:"8 GB",storage:"128/256/512 GB/1 TB",screen:"6,1 OLED 120 Hz",battery:"3.274 mAh",camera:"48 MP"},
+
+{name:"iPhone 15 Pro Max",brand:"Apple",cpu:"A17 Pro",ram:"8 GB",storage:"256/512 GB/1 TB",screen:"6,7 OLED 120 Hz",battery:"4.441 mAh",camera:"48 MP"},
+
+{name:"iPhone 16",brand:"Apple",cpu:"A18",ram:"8 GB",storage:"128/256/512 GB",screen:"6,1 OLED 60 Hz",battery:"3.561 mAh",camera:"48 MP"},
+
+{name:"iPhone 16 Plus",brand:"Apple",cpu:"A18",ram:"8 GB",storage:"128/256/512 GB",screen:"6,7 OLED 60 Hz",battery:"4.674 mAh",camera:"48 MP"},
+
+{name:"iPhone 16 Pro",brand:"Apple",cpu:"A18 Pro",ram:"8 GB",storage:"128/256/512 GB/1 TB",screen:"6,3 OLED 120 Hz",battery:"3.582 mAh",camera:"48 MP"},
+
+{name:"iPhone 16 Pro Max",brand:"Apple",cpu:"A18 Pro",ram:"8 GB",storage:"256/512 GB/1 TB",screen:"6,9 OLED 120 Hz",battery:"4.685 mAh",camera:"48 MP"},
+
+/* XIAOMI */
+
+{name:"Xiaomi 12",brand:"Xiaomi",cpu:"Snapdragon 8 Gen 1",ram:"8/12 GB",storage:"128/256 GB",screen:"6,28 AMOLED 120 Hz",battery:"4.500 mAh",camera:"50 MP"},
+
+{name:"Xiaomi 12 Pro",brand:"Xiaomi",cpu:"Snapdragon 8 Gen 1",ram:"8/12 GB",storage:"256 GB",screen:"6,73 AMOLED 120 Hz",battery:"4.600 mAh",camera:"50 MP"},
+
+{name:"Xiaomi 13",brand:"Xiaomi",cpu:"Snapdragon 8 Gen 2",ram:"8/12 GB",storage:"128/256/512 GB",screen:"6,36 AMOLED 120 Hz",battery:"4.500 mAh",camera:"50 MP"},
+
+{name:"Xiaomi 13 Pro",brand:"Xiaomi",cpu:"Snapdragon 8 Gen 2",ram:"8/12 GB",storage:"128/256/512 GB",screen:"6,73 AMOLED 120 Hz",battery:"4.820 mAh",camera:"50 MP"},
+
+{name:"Xiaomi 14",brand:"Xiaomi",cpu:"Snapdragon 8 Gen 3",ram:"12 GB",storage:"256/512 GB",screen:"6,36 AMOLED 120 Hz",battery:"4.610 mAh",camera:"50 MP"},
+
+{name:"Xiaomi 14 Ultra",brand:"Xiaomi",cpu:"Snapdragon 8 Gen 3",ram:"16 GB",storage:"512 GB/1 TB",screen:"6,73 AMOLED 120 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Xiaomi 14T",brand:"Xiaomi",cpu:"Dimensity 8300 Ultra",ram:"12 GB",storage:"256/512 GB",screen:"6,67 AMOLED 144 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Xiaomi 14T Pro",brand:"Xiaomi",cpu:"Dimensity 9300+",ram:"12/16 GB",storage:"256/512 GB/1 TB",screen:"6,67 AMOLED 144 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Xiaomi 15",brand:"Xiaomi",cpu:"Snapdragon 8 Elite",ram:"12/16 GB",storage:"256/512 GB/1 TB",screen:"6,36 AMOLED 120 Hz",battery:"5.400 mAh",camera:"50 MP"},
+
+{name:"Xiaomi 15 Ultra",brand:"Xiaomi",cpu:"Snapdragon 8 Elite",ram:"16 GB",storage:"512 GB/1 TB",screen:"6,73 AMOLED 120 Hz",battery:"5.410 mAh",camera:"200 MP"},
+
+/* MOTOROLA */
+
+{name:"Moto G52",brand:"Motorola",cpu:"Snapdragon 680",ram:"4/6 GB",storage:"128 GB",screen:"6,6 OLED 90 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Moto G53",brand:"Motorola",cpu:"Snapdragon 480+",ram:"4/8 GB",storage:"128 GB",screen:"6,5 LCD 120 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Moto G54",brand:"Motorola",cpu:"Dimensity 7020",ram:"4/8 GB",storage:"128/256 GB",screen:"6,5 LCD 120 Hz",battery:"6.000 mAh",camera:"50 MP"},
+
+{name:"Moto G84",brand:"Motorola",cpu:"Snapdragon 695",ram:"8/12 GB",storage:"256 GB",screen:"6,5 pOLED 120 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Moto G85",brand:"Motorola",cpu:"Snapdragon 6s Gen 3",ram:"8/12 GB",storage:"256/512 GB",screen:"6,67 pOLED 120 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Edge 30",brand:"Motorola",cpu:"Snapdragon 778G+",ram:"8 GB",storage:"128/256 GB",screen:"6,5 OLED 144 Hz",battery:"4.020 mAh",camera:"50 MP"},
+
+{name:"Edge 40",brand:"Motorola",cpu:"Dimensity 8020",ram:"8 GB",storage:"256 GB",screen:"6,55 pOLED 144 Hz",battery:"4.400 mAh",camera:"50 MP"},
+
+{name:"Edge 40 Pro",brand:"Motorola",cpu:"Snapdragon 8 Gen 2",ram:"12 GB",storage:"256 GB",screen:"6,67 pOLED 165 Hz",battery:"4.600 mAh",camera:"50 MP"},
+
+{name:"Edge 50 Fusion",brand:"Motorola",cpu:"Snapdragon 7s Gen 2",ram:"8/12 GB",storage:"256/512 GB",screen:"6,7 pOLED 144 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Edge 50 Pro",brand:"Motorola",cpu:"Snapdragon 7 Gen 3",ram:"12 GB",storage:"256/512 GB",screen:"6,7 pOLED 144 Hz",battery:"4.500 mAh",camera:"50 MP"},
+
+{name:"Edge 50 Ultra",brand:"Motorola",cpu:"Snapdragon 8s Gen 3",ram:"12/16 GB",storage:"512 GB/1 TB",screen:"6,67 pOLED 144 Hz",battery:"4.500 mAh",camera:"50 MP"},
+
+/* REDMI */
+
+{name:"Redmi Note 11",brand:"Redmi",cpu:"Snapdragon 680",ram:"4/6 GB",storage:"64/128 GB",screen:"6,43 AMOLED 90 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Redmi Note 12",brand:"Redmi",cpu:"Snapdragon 685",ram:"4/6/8 GB",storage:"128/256 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"48 MP"},
+
+{name:"Redmi Note 12 Pro",brand:"Redmi",cpu:"Dimensity 1080",ram:"6/8 GB",storage:"128/256 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"Redmi Note 12 Pro+",brand:"Redmi",cpu:"Dimensity 1080",ram:"8/12 GB",storage:"256 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"200 MP"},
+
+{name:"Redmi Note 13",brand:"Redmi",cpu:"Snapdragon 685",ram:"6/8 GB",storage:"128/256 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"108 MP"},
+
+{name:"Redmi Note 13 Pro",brand:"Redmi",cpu:"Snapdragon 7s Gen 2",ram:"8/12 GB",storage:"256/512 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.100 mAh",camera:"200 MP"},
+
+{name:"Redmi Note 13 Pro+",brand:"Redmi",cpu:"Dimensity 7200 Ultra",ram:"8/12 GB",storage:"256/512 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"200 MP"},
+
+{name:"Redmi Note 14",brand:"Redmi",cpu:"Dimensity 7025 Ultra",ram:"6/8/12 GB",storage:"128/256 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.500 mAh",camera:"50 MP"},
+
+{name:"Redmi Note 14 Pro",brand:"Redmi",cpu:"Dimensity 7300 Ultra",ram:"8/12 GB",storage:"256/512 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.500 mAh",camera:"200 MP"},
+
+{name:"Redmi Note 14 Pro+",brand:"Redmi",cpu:"Snapdragon 7s Gen 3",ram:"8/12 GB",storage:"256/512 GB",screen:"6,67 AMOLED 120 Hz",battery:"6.200 mAh",camera:"200 MP"},
+
+/* POCO */
+
+{name:"POCO X3 NFC",brand:"POCO",cpu:"Snapdragon 732G",ram:"6/8 GB",storage:"64/128 GB",screen:"6,67 LCD 120 Hz",battery:"5.160 mAh",camera:"64 MP"},
+
+{name:"POCO X3 Pro",brand:"POCO",cpu:"Snapdragon 860",ram:"6/8 GB",storage:"128/256 GB",screen:"6,67 LCD 120 Hz",battery:"5.160 mAh",camera:"48 MP"},
+
+{name:"POCO X4 Pro",brand:"POCO",cpu:"Snapdragon 695",ram:"6/8 GB",storage:"128/256 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"108 MP"},
+
+{name:"POCO X5 Pro",brand:"POCO",cpu:"Snapdragon 778G",ram:"6/8 GB",storage:"128/256 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"108 MP"},
+
+{name:"POCO X6",brand:"POCO",cpu:"Snapdragon 7s Gen 2",ram:"8/12 GB",storage:"256/512 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.100 mAh",camera:"64 MP"},
+
+{name:"POCO X6 Pro",brand:"POCO",cpu:"Dimensity 8300 Ultra",ram:"8/12 GB",storage:"256/512 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"64 MP"},
+
+{name:"POCO F4",brand:"POCO",cpu:"Snapdragon 870",ram:"6/8/12 GB",storage:"128/256 GB",screen:"6,67 AMOLED 120 Hz",battery:"4.500 mAh",camera:"64 MP"},
+
+{name:"POCO F5",brand:"POCO",cpu:"Snapdragon 7+ Gen 2",ram:"8/12 GB",storage:"256 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"64 MP"},
+
+{name:"POCO F5 Pro",brand:"POCO",cpu:"Snapdragon 8+ Gen 1",ram:"8/12 GB",storage:"256/512 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.160 mAh",camera:"64 MP"},
+
+{name:"POCO F6",brand:"POCO",cpu:"Snapdragon 8s Gen 3",ram:"8/12 GB",storage:"256/512 GB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"50 MP"},
+
+{name:"POCO F6 Pro",brand:"POCO",cpu:"Snapdragon 8 Gen 2",ram:"12/16 GB",storage:"256/512 GB/1 TB",screen:"6,67 AMOLED 120 Hz",battery:"5.000 mAh",camera:"50 MP"}
+
+];
+
+/* =========================
+   MENU
+========================= */
+
+function closeMenu(){
+ document.getElementById("menu").checked=false;
+}
+
+/* =========================
+   CELULARES
+========================= */
+
+let currentBrand="Todos";
+
+function render(){
+
+ const q=document
+ .getElementById("search")
+ .value
+ .toLowerCase();
+
+ const list=phones.filter(p=>
+  (currentBrand==="Todos"||p.brand===currentBrand)
+  &&
+  p.name.toLowerCase().includes(q)
+ );
+
+ document.getElementById("phones").innerHTML=
+ list.map(p=>`
+
+ <div class="phone">
+
+ <div>
+ <strong>${p.name}</strong>
+
+ <small>
+ ${p.brand} • ${p.cpu}
+ </small>
+
+ </div>
+
+ <button onclick="showSpec('${p.name}')">
+ FICHA
+ </button>
+
+ </div>
+
+ `).join("")
+ ||
+ `<div class="box">
+ Nenhum aparelho encontrado.
+ </div>`;
+
+}
+
+function filterBrand(b,el){
+
+ currentBrand=b;
+
+ document
+ .querySelectorAll(".filters button")
+ .forEach(x=>x.classList.remove("active"));
+
+ el.classList.add("active");
+
+ render();
+}
+
+document
+.getElementById("search")
+.addEventListener("input",render);
+
+/* =========================
+   COMPARADOR
+========================= */
+
+const c1=document.getElementById("c1");
+const c2=document.getElementById("c2");
+
+phones.forEach((p,i)=>{
+
+ c1.innerHTML+=`
+ <option value="${i}">
+ ${p.name}
+ </option>`;
+
+ c2.innerHTML+=`
+ <option value="${i}" ${i===1?"selected":""}>
+ ${p.name}
+ </option>`;
+
+});
+
+function compare(){
+
+ const a=phones[c1.value];
+ const b=phones[c2.value];
+
+ document.getElementById("result").innerHTML=`
+
+ <b>${a.name}</b> — ${a.cpu}
+
+ <br><br>
+
+ <b>${b.name}</b> — ${b.cpu}
+
+ `;
+
+ document.getElementById("compareTable").innerHTML=`
+
+ <div>
+ <b>Processador</b>
+ ${a.cpu}
+ </div>
+
+ <div>
+ <b>Processador</b>
+ ${b.cpu}
+ </div>
+
+ <div>
+ <b>RAM</b>
+ ${a.ram}
+ </div>
+
+ <div>
+ <b>RAM</b>
+ ${b.ram}
+ </div>
+
+ <div>
+ <b>Tela</b>
+ ${a.screen}
+ </div>
+
+ <div>
+ <b>Tela</b>
+ ${b.screen}
+ </div>
+
+ <div>
+ <b>Bateria</b>
+ ${a.battery}
+ </div>
+
+ <div>
+ <b>Bateria</b>
+ ${b.battery}
+ </div>
+
+ <div>
+ <b>Câmera</b>
+ ${a.camera}
+ </div>
+
+ <div>
+ <b>Câmera</b>
+ ${b.camera}
+ </div>
+
+ <div>
+ <b>Armazenamento</b>
+ ${a.storage}
+ </div>
+
+ <div>
+ <b>Armazenamento</b>
+ ${b.storage}
+ </div>
+
+ `;
+
+}
+
+c1.onchange=compare;
+c2.onchange=compare;
+
+/* =========================
+   FICHA
+========================= */
+
+function showSpec(name){
+
+ const p=phones.find(x=>x.name===name);
+
+ if(!p)return;
+
+ document.getElementById("modalTitle").textContent=p.name;
+
+ document.getElementById("spec").innerHTML=[
+
+ ["Marca",p.brand],
+ ["Processador",p.cpu],
+ ["RAM",p.ram],
+ ["Armazenamento",p.storage],
+ ["Tela",p.screen],
+ ["Bateria",p.battery],
+ ["Câmeras",p.camera]
+
+ ].map(x=>`
+
+ <div>
+ <b>${x[0]}</b>
+ ${x[1]}
+ </div>
+
+ `).join("");
+
+ document
+ .getElementById("modal")
+ .classList.add("show");
+
+}
+
+function closeSpec(){
+
+ document
+ .getElementById("modal")
+ .classList.remove("show");
+
+}
+
+/* =========================
+   DICAS
+========================= */
+
+const tips=[
+
+[
+"🔋 Como aumentar a vida útil da bateria",
+"Evite deixar o aparelho constantemente em temperaturas muito altas. Sempre que possível, mantenha o sistema atualizado e utilize carregadores compatíveis e de boa qualidade."
+],
+
+[
+"💾 Como liberar espaço",
+"Comece removendo vídeos e arquivos grandes que você não precisa. Depois verifique a pasta de downloads, mídias duplicadas e aplicativos que não são utilizados."
+],
+
+[
+"📷 Como melhorar suas fotos",
+"Limpe a lente da câmera antes de fotografar, procure boa iluminação e evite utilizar zoom digital excessivo. Em cenas difíceis, experimente diferentes níveis de exposição."
+],
+
+[
+"⚡ Como deixar o celular mais rápido",
+"Feche aplicativos que realmente estejam consumindo muitos recursos, mantenha espaço livre no armazenamento e desinstale aplicativos que você não utiliza."
+],
+
+[
+"🌡️ Como diminuir o aquecimento",
+"Evite jogar enquanto o aparelho está carregando, diminua o brilho quando necessário e tente não utilizar o celular sob sol forte ou em ambientes muito quentes."
+],
+
+[
+"🔐 Como proteger seu celular",
+"Use senha ou biometria, mantenha o sistema atualizado e evite instalar aplicativos de fontes desconhecidas."
+],
+
+[
+"📶 Como melhorar o Wi-Fi",
+"Posicione o roteador em um local aberto e central. Se possível, utilize a rede de 5 GHz quando estiver próximo do roteador."
+],
+
+[
+"🎮 Como melhorar desempenho em jogos",
+"Feche aplicativos pesados antes de iniciar o jogo, deixe espaço livre no armazenamento e utilize uma configuração gráfica compatível com o hardware do aparelho."
+]
+
+];
+
+function showTip(index){
+
+ const t=tips[index];
+
+ document.getElementById("modalTitle").textContent=t[0];
+
+ document.getElementById("spec").innerHTML=`
+
+ <div style="grid-column:1/-1">
+ <b>ZYVON TECH — DICA</b>
+ ${t[1]}
+ </div>
+
+ `;
+
+ document
+ .getElementById("modal")
+ .classList.add("show");
+
+}
+
+/* =========================
+   LABORATÓRIO
+========================= */
+
+function toggleTool(id){
+
+ document
+ .getElementById(id)
+ .classList.toggle("show");
+
+}
+
+/* BATERIA */
+
+function calcBattery(){
+
+ const capacity=parseFloat(
+ document.getElementById("batteryCapacity").value
+ );
+
+ const hours=parseFloat(
+ document.getElementById("batteryHours").value
+ );
+
+ if(!capacity||!hours){
+
+  document.getElementById("batteryResult").textContent=
+  "Digite os valores.";
+
+  return;
+
+ }
+
+ const consumo=capacity/hours;
+
+ document.getElementById("batteryResult").innerHTML=
+ `
+ Consumo médio estimado:
+ <b>${consumo.toFixed(0)} mAh por hora</b>
+ `;
+
+}
+
+/* ARMAZENAMENTO */
+
+function calcStorage(){
+
+ const total=parseFloat(
+ document.getElementById("storageTotal").value
+ );
+
+ const used=parseFloat(
+ document.getElementById("storageUsed").value
+ );
+
+ if(!total||used<0||used>total){
+
+  document.getElementById("storageResult").textContent=
+  "Digite valores válidos.";
+
+  return;
+
+ }
+
+ const free=total-used;
+
+ const percent=(free/total)*100;
+
+ document.getElementById("storageResult").innerHTML=
+ `
+ Espaço livre:
+ <b>${free.toFixed(1)} GB</b>
+ <br><br>
+ Disponível:
+ <b>${percent.toFixed(1)}%</b>
+ `;
+
+}
+
+/* FPS */
+
+function calcFPS(){
+
+ const level=document.getElementById("fpsLevel").value;
+
+ const game=parseInt(
+ document.getElementById("fpsGame").value
+ );
+
+ const multiplier={
+
+ low:.55,
+ medium:.8,
+ high:1.15,
+ ultra:1.45
+
+ }[level];
+
+ let fps=Math.round(game*multiplier);
+
+ if(fps>120)fps=120;
+
+ document.getElementById("fpsResult").innerHTML=
+ `
+ FPS estimado:
+ <b>${fps} FPS</b>
+ <br><br>
+ <small>
+ Estimativa educativa. O resultado real depende do jogo,
+ resolução, temperatura e configurações gráficas.
+ </small>
+ `;
+
+}
+
+/* ANALISADOR */
+
+const analysisPhone=
+document.getElementById("analysisPhone");
+
+phones.forEach((p,i)=>{
+
+ analysisPhone.innerHTML+=`
+ <option value="${i}">
+ ${p.name}
+ </option>
+ `;
+
+});
+
+function analyzePhone(){
+
+ const p=phones[analysisPhone.value];
+
+ let score=0;
+
+ if(
+ p.cpu.includes("8 Gen")||
+ p.cpu.includes("8 Elite")||
+ p.cpu.includes("8 Elite Gen 5")||
+ p.cpu.includes("A17")||
+ p.cpu.includes("A18")||
+ p.cpu.includes("Dimensity 9300")
+ )score+=3;
+
+ else score+=1;
+
+ if(p.ram.includes("12")||p.ram.includes("16"))
+ score+=2;
+
+ else score+=1;
+
+ if(
+ p.screen.includes("120")||
+ p.screen.includes("144")||
+ p.screen.includes("165")
+ )score+=2;
+
+ if(
+ p.battery.includes("5.000")||
+ p.battery.includes("5.100")||
+ p.battery.includes("5.400")||
+ p.battery.includes("6.000")
+ )score+=2;
+
+ let level;
+
+ if(score>=8)
+ level="Hardware de alto desempenho";
+
+ else if(score>=5)
+ level="Hardware intermediário/avançado";
+
+ else
+ level="Hardware básico/intermediário";
+
+ document.getElementById("analysisResult").innerHTML=
+ `
+ <b>${p.name}</b>
+ <br><br>
+ Processador: ${p.cpu}
+ <br>
+ RAM: ${p.ram}
+ <br>
+ Tela: ${p.screen}
+ <br>
+ Bateria: ${p.battery}
+ <br><br>
+ Perfil:
+ <b>${level}</b>
+ `;
+
+}
+
+/* =========================
+   NOTÍCIAS
+========================= */
+
+function openNews(url){
+
+ window.open(url,"_blank");
+
+}
+
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
+render();
+
+compare();
+
+</script>
+
+</body>
+</html>
